@@ -5,6 +5,7 @@ import HackathonInfo from './pages/HackathonInfo';
 import Hackathon from './pages/Hackathons';
 import Teams from './pages/Teams';
 
+//start
 function App() {
  
   return (
