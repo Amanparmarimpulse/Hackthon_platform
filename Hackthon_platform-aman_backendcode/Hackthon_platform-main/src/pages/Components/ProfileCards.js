@@ -40,8 +40,6 @@ const ProfileCards = (props) => {
       .catch(err => console.error('Error fetching data:', err));
   }, []);
 
-  console.log('Developers:', developers);
-
   const handleExpandClick = (id) => {
     setExpanded(prevState => ({ ...prevState, [id]: !prevState[id] }));
   };
@@ -55,6 +53,9 @@ const ProfileCards = (props) => {
       developer.skills.some(skill => skill.toLowerCase().includes(searchQuery));
   });
 
+  // Ensure only the specified number of cards are rendered
+  const limitedDevelopers = filteredDevelopers.slice(0, props.count);
+
   return (
     <div style={{ margin: "2%" }}>
       <Box sx={{ marginBottom: "2%" }}>
@@ -64,11 +65,11 @@ const ProfileCards = (props) => {
           fullWidth
           value={searchQuery}
           onChange={handleSearchChange}
-          sx={{borderRadius:'40px'}}
+          sx={{ borderRadius: '40px' }}
         />
       </Box>
       <Grid container spacing={3}>
-        {filteredDevelopers.map(developer => (
+        {limitedDevelopers.map(developer => (
           <Grid item xs={12} sm={12} md={props.size} key={developer._id}>
             <Card
               sx={{
@@ -122,7 +123,6 @@ const ProfileCards = (props) => {
                   sx={{ textTransform: 'none', marginLeft: "2%", marginBottom: '1%', background: "blue" }}
                   href='/sendinvite'
                 >
-
                   Send Request
                 </Button>
                 <IconButton aria-label="share">
@@ -140,12 +140,11 @@ const ProfileCards = (props) => {
               <Collapse in={expanded[developer._id]} timeout="auto" unmountOnExit>
                 <CardContent>
                   Email: {developer.email}
-                  <br></br>
+                  <br />
                   Gender: {developer.gender}
-                  <br></br>
+                  <br />
                   About: {developer.bio}
-                  <br>
-                  </br>
+                  <br />
                   Location: {developer.location}
                 </CardContent>
               </Collapse>
@@ -155,6 +154,6 @@ const ProfileCards = (props) => {
       </Grid>
     </div>
   );
-}
+};
 
 export default ProfileCards;

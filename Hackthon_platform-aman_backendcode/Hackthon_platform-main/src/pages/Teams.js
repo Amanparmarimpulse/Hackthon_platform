@@ -41,7 +41,7 @@ const Teams = () => {
       Developers
     </Typography>
       
-        <Container sx={{background:'light grey'}}>  <ProfileCards size={6}></ProfileCards></Container>
+        <Container sx={{background:'light grey'}}>  <ProfileCards size={6} count={1000}></ProfileCards ></Container>
   
    
     </>

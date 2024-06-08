@@ -37,21 +37,21 @@ export default function Main() {
       <Navbar />
       <Midsection />
       <Divider sx={{ marginTop: '3vh', color: 'black' }} />
-      <div style={{ display: 'flex', flexDirection: match ? 'column' : 'row', gap: '3%', width: '100vw', marginTop: '3%',height:'100vh' }}>
-        {!match && (
+      <div style={{ display: 'flex', flexDirection: match ? 'column' : 'row', gap: '3%', width: '100vw', marginTop: '1%',height:'100vh' }}>
+         (
           <div 
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               width: '100%',
-              marginTop: '9%',
+              marginTop: '3%',
               padding: 0,
               zIndex: 1,
 
             }}
           >
-            <Box
+           { !match && <Box
               sx={{
                 backgroundImage: `url(${Image})`,
                 backgroundSize: 'cover',
@@ -61,16 +61,16 @@ export default function Main() {
                 borderRadius: '2rem',
                 animation: 'float 4s ease-in-out infinite',
               }}
-            />
+            />}
             <Box
               sx={{
                 width: '50%',
                 color: 'rgba(2, 48, 71, 1)',
-                paddingLeft: '2rem',
+                paddingLeft:match? '2rem':'0',
                 
               }}
             >
-              <Typography variant="h3" sx={{ fontFamily: 'poppins', fontWeight: 'bold' }}>
+              <Typography variant={match?"h1":"h2"} sx={{ fontFamily: 'poppins', fontWeight: 'bold' }}>
                 Welcome to Our Platform
               </Typography>
               <Typography variant="h6" sx={{ fontFamily: 'poppins' }}>
@@ -78,16 +78,19 @@ export default function Main() {
               </Typography>
             </Box>
           </div>
-        )}
+        )
       </div>
-      <Container sx={{ display: 'flex', flexDirection: match ? 'column' : 'row', gap: '3%', width: '100vw', marginTop: '2rem' }}>
-        <Container>
+      <DoubleCards />
+      <Container sx={{ display: 'flex', flexDirection: match ? 'column' : 'row', gap: '3%', width: '100vw', marginTop: '2%' }}>
+        <Container sx={{
+        
+        }}>
           <Typography
             sx={{
               fontFamily: 'poppins',
               fontSize: '1.8rem',
               fontWeight: 'semi bold',
-              marginBottom: '1vh',
+              marginBottom:'1vh',
             }}
           >
             Hackathons for You
@@ -110,11 +113,11 @@ export default function Main() {
             Find the Right Fit
           </Typography>
           <Box sx={{ padding: '4%', paddingTop: '4%', borderRadius: '2rem', paddingRight: '0' }}>
-            <ProfileCards size={12} />
+            <ProfileCards size={12} count={5} />
           </Box>
         </Container>
       </Container>
-      <DoubleCards />
+     
       <Footer />
     </>
   );
