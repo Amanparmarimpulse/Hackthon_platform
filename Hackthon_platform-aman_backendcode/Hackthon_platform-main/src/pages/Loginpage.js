@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { Box, Button, Container, CssBaseline, TextField, Typography } from '@mui/material';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Navbar from './Components/Navbar';
@@ -13,8 +13,10 @@ const DeveloperProfile = () => {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    
+
     const navigate = useNavigate();
+    const theme = useTheme();
+    const match = useMediaQuery(theme.breakpoints.down('md'));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,6 +27,7 @@ const DeveloperProfile = () => {
         } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
+            alert(errorMessage);
             if (errorCode === 'auth/invalid-email') {
                 setEmailError(errorMessage);
                 setPasswordError(''); // Clear password error
@@ -38,23 +41,25 @@ const DeveloperProfile = () => {
         }
     };
 
-    const handlePasswordReset = () => {
+    const handlePasswordReset = async () => {
         const email = prompt('Please enter your email');
-        if (email === '') {
+        if (!email) {
             alert('Please enter an email');
-        } else {
-            sendPasswordResetEmail(auth, email)
-                .then(() => {
-                    alert("Email sent! Check your mailbox");
-                })
-                .catch((error) => {
-                    alert("Error sending email: " + error.message);
-                });
+            return;
+        }
+
+        try {
+            const response = await axios.post('http://localhost:3001/checkUser', { email }); // Update URL as needed
+            if (response.data.exists) {
+                await sendPasswordResetEmail(auth, email);
+                alert("Email sent! Check your mailbox");
+            } else {
+                alert("No user exists with this email in Firebase");
+            }
+        } catch (error) {
+            alert("Error checking user: " + error.message);
         }
     };
-
-    const theme = useTheme();
-    const match = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <>
@@ -96,7 +101,7 @@ const DeveloperProfile = () => {
                                 />
                                 {emailError && <Typography color="error">{emailError}</Typography>}
                             </Container>
-                            <Container >
+                            <Container>
                                 <label>Enter Password:</label> <br />
                                 <TextField
                                     sx={{

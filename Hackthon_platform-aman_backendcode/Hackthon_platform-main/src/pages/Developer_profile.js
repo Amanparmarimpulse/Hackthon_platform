@@ -9,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { auth } from '../firebase/config.js';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
+
 const DeveloperProfile = () => {
     console.log(auth);
 
@@ -25,6 +26,7 @@ const DeveloperProfile = () => {
 
     const navigate = useNavigate();
 
+ 
     const handleCredentials = (e) => {
         const { name, value } = e.target;
         if (name === "name") setName(value);
@@ -70,6 +72,7 @@ const DeveloperProfile = () => {
           const errorMessage = error.message;
           console.log(errorCode);
           console.log(errorMessage);
+          alert(errorMessage)
 
           if (errorCode === 'auth/invalid-email') {
               setEmailError(errorMessage);
