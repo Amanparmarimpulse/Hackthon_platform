@@ -1,14 +1,17 @@
-import { Container, Grid, Link, Typography } from '@mui/material'
+import { Container, Grid, Link, Typography ,useTheme,useMediaQuery} from '@mui/material'
 import React from 'react'
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 function Footer() {
+  const theme=useTheme();
+    const match=useMediaQuery(theme.breakpoints.down('md'));
   return (
+    
     <>
   <div style={{marginTop:'8%',position:'sticky',paddingBottom:'5%',backgroundColor:'rgb(0, 53, 102)' , color:'white',paddingTop:'10%'}}>
-        <Grid container sx={{backgroundColor:'transpaernt',marginLeft:'17%' }} spacing={6}>
+        <Grid container sx={{backgroundColor:'transpaernt',marginLeft:match?'5%':'17%' }} spacing={6}>
           <Grid item xs={12} sm={6} md={4} lg={2} >
             <Container sx={{color:'white'}}>
              
