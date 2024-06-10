@@ -90,7 +90,7 @@ const DeveloperProfile = () => {
         borderRadius: '5px',
         padding: '10px',
         border: '1px solid rgba(0, 0, 0, 0.23)',
-        width: '60%',
+        width: '100%',
         marginTop: '10px',
         fontSize: '16px',
         fontFamily: 'Poppins, sans-serif',
@@ -105,11 +105,11 @@ const DeveloperProfile = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 background: 'rgb(71, 101, 216)',
-                height: '100vh',
+                height: '120vh',
                 width: '100vw',
                 flexDirection: match ? 'column' : 'row',
                 overflowX: 'hidden',
-                boxSizing: 'border-box'
+                
             }}>
                 {!match && <Container sx={{
                     backgroundImage: `url(${Image})`,
@@ -182,10 +182,11 @@ const DeveloperProfile = () => {
                             </Container>
                             <Container className="form-group">
                                 <label>Your Bio:</label> <br />
-                                <textarea style={{ 'width': '60%', 'borderRadius': '7px', 'border': 'solid white' }
+                                <textarea style={{ 'width': '60%', 'borderRadius': '7px', 'border': 'solid white', 'fontSize': '0.8rem', }
                                 } value={bio} onChange={(e) => setBio(e.target.value)} />
                             </Container>
-                            <Container className="form-group">
+                            <Container className="form-group"sx={{width:'64%' ,marginLeft:'0'
+                                }}>
                                 <label>Gender Identity:</label> <br />
                                 <select name="gender" value={gender} onChange={handleCredentials} style={selectStyle}>
                                     <option value="">Select</option>
@@ -236,8 +237,11 @@ const DeveloperProfile = () => {
                                     value={password}
                                     onChange={handleCredentials} />
                             </Container>
-                            <Container className="skills-container">
-                                <Typography variant='h6'>Add Skills</Typography>
+                            <Container className="skills-container" >
+                            <Typography variant='h6'>Add Skills</Typography>
+                                <Box sx={{display:'flex',flexDirection:'row',width:'80%' ,marginLeft:'0'
+                                }} >
+                               
                                 <select value={selectedSkill} onChange={handleSkillsChange} style={selectStyle}>
                                     <option value="">Select Skill</option>
                                     <option value="ai_ml">AI/ML</option>
@@ -248,14 +252,17 @@ const DeveloperProfile = () => {
                                 </select>
                                 <Button type="button" onClick={handleAddSkill} sx={{
                                     backgroundColor: 'white',
-                                    width: '20%',
+                                    width: '30%',
                                     height: '10%',
                                     '&:hover': {
                                         backgroundColor: 'lightgrey'
-                                    }, marginLeft: '3%'
+                                    }, marginLeft: '3%',
+                                    marginTop:'3%'
                                 }}>
                                     <Typography sx={{ fontFamily: 'poppins !important' }}>Add Skill</Typography>
                                 </Button>
+                                </Box>
+                                
                                 <Container className="selected-skills">
                                     {skills.map((skill, index) => (
                                         <Container key={index} className="skill" sx={{}}>
@@ -273,11 +280,10 @@ const DeveloperProfile = () => {
                                 <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins !important' }}>Submit</Typography>
                             </Button>
                             <Button type="submit" href="/login" sx={{
-                                backgroundColor: 'white', marginTop: '6%', marginLeft: '3%', width: '20%', borderRadius: '30px', height: '10%', '&:hover': {
-                                    backgroundColor: 'lightgrey',
-                                },
+                                 marginTop: '6%', marginLeft: '3%', width: '20%', borderRadius: '30px', height: '10%', 
                             }}>
-                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins !important' }}>Login</Typography>
+                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins',
+                                    color:'white', }}>Login</Typography>
                             </Button>
                                <br/>
                             {emailError && <Typography sx={{ color: 'red' }}>{emailError}</Typography>}
