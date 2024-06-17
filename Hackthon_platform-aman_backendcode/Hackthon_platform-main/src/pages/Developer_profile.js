@@ -10,6 +10,8 @@ import { auth } from '../firebase/config.js';
 import { createUserWithEmailAndPassword ,sendEmailVerification} from "firebase/auth";
 
 
+
+
 const DeveloperProfile = () => {
     console.log(auth);
 
@@ -52,6 +54,7 @@ const DeveloperProfile = () => {
     };
 
     const handleSubmit = async (e) => {
+
   e.preventDefault();
   console.log('signup');
 
@@ -88,6 +91,9 @@ const DeveloperProfile = () => {
     }
   }
 };
+
+
+    
 
 
     const theme = useTheme();

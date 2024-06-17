@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+
 import { Container, Typography } from '@mui/material';
 import emailjs from '@emailjs/browser';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
@@ -8,6 +9,8 @@ import { useLocation } from 'react-router-dom';
 const ContactUS = () => {
   const location = useLocation();
   console.log(location.state)
+
+
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -19,6 +22,7 @@ const ContactUS = () => {
       form.current, 
       'RC4FX5KzZfIt9I7wi' 
     )
+
     .then(
       (response) => {
         console.log('SUCCESS!', response.status, response.text);
@@ -29,10 +33,12 @@ const ContactUS = () => {
         alert('An error occurred while sending the email. Please try again.'); 
       }
     );
+
   };
 
   return (
     <>
+
       <Navbar/>
       <Container sx={{
         height: 150, 
@@ -120,6 +126,7 @@ const ContactUS = () => {
           </div>
         </form>
       </div>
+
     </>
   );
 };

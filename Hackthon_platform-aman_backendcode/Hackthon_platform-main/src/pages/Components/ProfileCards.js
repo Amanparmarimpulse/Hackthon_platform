@@ -42,10 +42,12 @@ const ProfileCards = (props) => {
       .catch(err => console.error('Error fetching data:', err));
   }, []);
 
+
   const handleButtonClick = (email) => {
     {console.log(email)}
     navigate('/sendinvite', { state: { developerEmail: email } });
   };
+
 
   const handleExpandClick = (id) => {
     setExpanded(prevState => ({ ...prevState, [id]: !prevState[id] }));
@@ -59,6 +61,7 @@ const ProfileCards = (props) => {
     return developer.name.toLowerCase().includes(searchQuery) ||
       developer.skills.some(skill => skill.toLowerCase().includes(searchQuery));
   });
+
 
   const limitedDevelopers = filteredDevelopers.slice(0, props.count);
 
@@ -130,7 +133,6 @@ const ProfileCards = (props) => {
                   onClick={() => handleButtonClick(developer.email)}
                 >
                   Send Request
-                  
                 </Button>
                 <IconButton aria-label="share">
                   <ShareIcon />
