@@ -29,7 +29,7 @@ Welcome to the MERN Hackathon Platform! This project is designed to facilitate l
 - **User Login ans Signup:**
   
 ![image](https://github.com/Amanparmarimpulse/Hackthon_platform/assets/129597590/7924df1c-feb5-43a1-ac07-41427fafe187)
-![image](https://github.com/Amanparmarimpulse/Hackthon_platform/assets/129597590/c37e0243-d971-46b4-b1ed-54180830456c)
+
 ![image](https://github.com/Amanparmarimpulse/Hackthon_platform/assets/129597590/9e4f613d-1805-4849-87b2-d18ac695d88d)
 
 
