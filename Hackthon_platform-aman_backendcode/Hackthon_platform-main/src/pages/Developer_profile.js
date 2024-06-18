@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Container, CssBaseline, Typography, TextField } from '@mui/material';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Navbar from './Components/Navbar';
 import Image from './Components/loginpageimg.jpeg';
 import CloseIcon from '@mui/icons-material/Close';
 import { auth } from '../firebase/config.js';
-import { createUserWithEmailAndPassword ,sendEmailVerification} from "firebase/auth";
-
-
-
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 
 const DeveloperProfile = () => {
-    console.log(auth);
-
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
     const [bio, setBio] = useState('');
@@ -28,7 +23,6 @@ const DeveloperProfile = () => {
 
     const navigate = useNavigate();
 
- 
     const handleCredentials = (e) => {
         const { name, value } = e.target;
         if (name === "name") setName(value);
@@ -54,47 +48,44 @@ const DeveloperProfile = () => {
     };
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('signup');
 
-  e.preventDefault();
-  console.log('signup');
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            // Send email verification
+            await sendEmailVerification(userCredential.user);
+            alert('A verification email has been sent to your inbox. Please verify your email address before proceeding.');
 
-    // Ensure email verification before further actions
-    await sendEmailVerification(userCredential.user);
-    alert('A verification email has been sent to your inbox. Please verify your email address before proceeding.');
+            // Check for email verification status
+            const checkEmailVerified = async () => {
+                await userCredential.user.reload();
+                if (userCredential.user.emailVerified) {
+                    // Send data to your server
+                    await axios.post('http://localhost:3001/developer', { name, email, location, gender, bio, skills });
+                    navigate('/home');
+                } else {
+                    setTimeout(checkEmailVerified, 1000); // Check every second
+                }
+            };
 
-    // Code execution continues only after successful email verification
+            checkEmailVerified();
 
-    // Signed up
-    const user = userCredential.user;
-    console.log(user);
+        } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+            alert(errorMessage); // Display error message to user
 
-    // Send data to your server (if email verification is successful)
-    await axios.post('http://localhost:3001/developer', { name, email, location, gender, bio, skills })
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
-
-    navigate('/home');
-  } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-    alert(errorMessage); // Display error message to user
-
-    if (errorCode === 'auth/invalid-email') {
-      setEmailError(errorMessage);
-    } else if (errorCode === 'auth/weak-password') {
-      setPasswordError(errorMessage);
-    }
-  }
-};
-
-
-    
-
+            if (errorCode === 'auth/invalid-email') {
+                setEmailError(errorMessage);
+            } else if (errorCode === 'auth/weak-password') {
+                setPasswordError(errorMessage);
+            }
+        }
+    };
 
     const theme = useTheme();
     const match = useMediaQuery(theme.breakpoints.down('md'));
@@ -123,7 +114,6 @@ const DeveloperProfile = () => {
                 width: '100vw',
                 flexDirection: match ? 'column' : 'row',
                 overflowX: 'hidden',
-                
             }}>
                 {!match && <Container sx={{
                     backgroundImage: `url(${Image})`,
@@ -152,7 +142,7 @@ const DeveloperProfile = () => {
                     <Container sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ fontWeight: 'bold', fontSize: '2rem', fontFamily: 'poppins', marginBottom: '2%' }}>SignUP</Typography>
                         <form onSubmit={handleSubmit}>
-                            <Container >
+                            <Container>
                                 <label>Your Name:</label> <br />
                                 <TextField
                                     sx={{
@@ -252,31 +242,28 @@ const DeveloperProfile = () => {
                                     onChange={handleCredentials} />
                             </Container>
                             <Container className="skills-container" >
-                            <Typography variant='h6'>Add Skills</Typography>
-                                <Box sx={{display:'flex',flexDirection:'row',width:'80%' ,marginLeft:'0'
-                                }} >
-                               
-                                <select value={selectedSkill} onChange={handleSkillsChange} style={selectStyle}>
-                                    <option value="">Select Skill</option>
-                                    <option value="ai_ml">AI/ML</option>
-                                    <option value="fullstack">Fullstack Developer</option>
-                                    <option value="designer">Designer</option>
-                                    <option value="react">React Developer</option>
-                                    <option value="backend">Backend Developer</option>
-                                </select>
-                                <Button type="button" onClick={handleAddSkill} sx={{
-                                    backgroundColor: 'white',
-                                    width: '30%',
-                                    height: '10%',
-                                    '&:hover': {
-                                        backgroundColor: 'lightgrey'
-                                    }, marginLeft: '3%',
-                                    marginTop:'3%'
-                                }}>
-                                    <Typography sx={{ fontFamily: 'poppins !important' }}>Add Skill</Typography>
-                                </Button>
+                                <Typography variant='h6'>Add Skills</Typography>
+                                <Box sx={{display:'flex',flexDirection:'row',width:'80%' ,marginLeft:'0'}}>
+                                    <select value={selectedSkill} onChange={handleSkillsChange} style={selectStyle}>
+                                        <option value="">Select Skill</option>
+                                        <option value="ai_ml">AI/ML</option>
+                                        <option value="fullstack">Fullstack Developer</option>
+                                        <option value="designer">Designer</option>
+                                        <option value="react">React Developer</option>
+                                        <option value="backend">Backend Developer</option>
+                                    </select>
+                                    <Button type="button" onClick={handleAddSkill} sx={{
+                                        backgroundColor: 'white',
+                                        width: '30%',
+                                        height: '10%',
+                                        '&:hover': {
+                                            backgroundColor: 'lightgrey'
+                                        }, marginLeft: '3%',
+                                        marginTop:'3%'
+                                    }}>
+                                        <Typography sx={{ fontFamily: 'poppins !important' }}>Add Skill</Typography>
+                                    </Button>
                                 </Box>
-                                
                                 <Container className="selected-skills">
                                     {skills.map((skill, index) => (
                                         <Container key={index} className="skill" sx={{}}>
@@ -286,22 +273,21 @@ const DeveloperProfile = () => {
                                     ))}
                                 </Container>
                             </Container>
-                            <Button type="submit"  sx={{
+                            <Button type="submit" sx={{
                                 backgroundColor: 'white', marginTop: '6%', marginLeft: '3%', width: '20%', borderRadius: '30px', height: '10%', '&:hover': {
                                     backgroundColor: 'lightgrey',
                                 },
                             }}>
                                 <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins !important' }}>Submit</Typography>
                             </Button>
-                            <Button type="submit" href="/login" sx={{
-                                 marginTop: '6%', marginLeft: '3%', width: '20%', borderRadius: '30px', height: '10%', 
+                            <Button href="/login" sx={{
+                                marginTop: '6%', marginLeft: '3%', width: '20%', borderRadius: '30px', height: '10%',
                             }}>
-                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins',
-                                    color:'white', }}>Login</Typography>
+                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins', color:'white', }}>Login</Typography>
                             </Button>
-                               <br/>
+                            <br/>
                             {emailError && <Typography sx={{ color: 'red' }}>{emailError}</Typography>}
-            {passwordError && <Typography sx={{ color: 'red' }}>{passwordError}</Typography>}
+                            {passwordError && <Typography sx={{ color: 'red' }}>{passwordError}</Typography>}
                         </form>
                     </Container>
                 </Container>

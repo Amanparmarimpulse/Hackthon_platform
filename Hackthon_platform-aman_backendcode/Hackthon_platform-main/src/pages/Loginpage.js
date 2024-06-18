@@ -47,17 +47,12 @@ const DeveloperProfile = () => {
             alert('Please enter an email');
             return;
         }
-
+    
         try {
-            const response = await axios.post('http://localhost:3001/checkUser', { email }); // Update URL as needed
-            if (response.data.exists) {
-                await sendPasswordResetEmail(auth, email);
-                alert("Email sent! Check your mailbox");
-            } else {
-                alert("No user exists with this email in Firebase");
-            }
+            await sendPasswordResetEmail(auth, email);
+            alert("Email sent! Check your mailbox");
         } catch (error) {
-            alert("Error checking user: " + error.message);
+            alert("Error sending password reset email: " + error.message);
         }
     };
 

@@ -148,8 +148,6 @@ const ProfileCards = (props) => {
               </CardActions>
               <Collapse in={expanded[developer._id]} timeout="auto" unmountOnExit>
                 <CardContent>
-                  Email: {developer.email}
-                  <br />
                   Gender: {developer.gender}
                   <br />
                   About: {developer.bio}

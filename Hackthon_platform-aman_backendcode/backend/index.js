@@ -32,19 +32,7 @@ app.post('/developer', (req, res) => {
      .catch(err => res.json(err));
 });
 
-app.post('/checkUser', async (req, res) => {
-  const { email } = req.body;
-  try {
-      const userRecord = await admin.auth().getUserByEmail(email);
-      res.status(200).send({ exists: true });
-  } catch (error) {
-      if (error.code === 'auth/user-not-found') {
-          res.status(404).send({ exists: false });
-      } else {
-          res.status(500).send({ error: error.message });
-      }
-  }
-});
+
 
 app.get('/developers', (req, res) => {
     DeveloperModel.find()
