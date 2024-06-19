@@ -89,7 +89,7 @@ const ContactUS = () => {
               Email to (Developer)
             </label>
             <input
-              type="email"
+              type="password"
               name="to_email"
               required
               className="form-control "
