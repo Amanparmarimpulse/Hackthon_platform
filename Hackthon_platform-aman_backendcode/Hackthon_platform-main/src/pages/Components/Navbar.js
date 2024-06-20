@@ -25,7 +25,7 @@ function Navbar() {
 
     // Fetch developer data from MongoDB collection
     const fetchDeveloperData = () => {
-        fetch('http://localhost:3001/developers')
+        fetch('https://hackthon-platform-qijy.vercel.app/developers')
             .then(response => response.json())
             .then(data => {
                 setDevelopers(data);
