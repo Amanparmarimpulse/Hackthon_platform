@@ -33,7 +33,7 @@ const ProfileCards = (props) => {
   }));
 
   useEffect(() => {
-    fetch('http://localhost:3001/developers')
+    fetch('https://hackthon-platform-qijy.vercel.app/developers')
       .then(response => response.json())
       .then(data => {
         setDevelopers(data);
