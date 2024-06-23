@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "Hackthon_platform-aman_backendcode/backend/index.js",
+      "src": "backend/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "Hackthon_platform-aman_backendcode/backend/index.js"
+      "dest": "backend/index.js"
     }
   ]
 }
