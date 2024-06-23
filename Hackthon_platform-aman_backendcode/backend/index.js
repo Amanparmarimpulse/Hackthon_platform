@@ -2,8 +2,7 @@ const express = require("express");
 const mongoose = require('mongoose');
 const cors = require("cors");
 const DeveloperModel = require("./models/developer_profiledata");
-const serviceAccount = require('./firebasekey/serviceAccountKey.json');
-const admin = require('firebase-admin');
+
 require('dotenv').config();
 const app = express();
 
@@ -14,9 +13,7 @@ const PORT = process.env.PORT || 3001;
 
 // Initialize Firebase Admin SDK
 // Initialize Firebase Admin SDK
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
+
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
