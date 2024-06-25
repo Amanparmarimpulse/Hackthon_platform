@@ -1,44 +1,83 @@
-import React from 'react'
-import { Drawer ,Link,Button, IconButton, Divider} from '@mui/material'
+import React from 'react';
+import { Drawer, Link, Button, IconButton, Divider, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-function Drawercomp() {
-    const [open,setOpen]=React.useState(false);
-    
-  
-  return (
-  
-    <>
-    <Drawer open={open} onClose={()=>setOpen(false)}  sx={{
-            display: { xs: 'block', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width:'240px' },
-            marginLeft:'10px'
-          }}
-          anchor='right'>
-            
-    <Link href="#" underline="/Home" color={'black'} sx={{padding:'10px',marginTop:'30px'}}>
-                            {'Discover'} 
-                      
-                        </Link>
-                        <Link href="/Hackathon" underline="hover" color={'black'} sx={{padding:'10px'}}>
-                            {'Find Hackathon'}
-                        </Link>
-                        <Link href="/Teams" underline="hover" color={'black'} sx={{padding:'10px'}}>
-                            {'Find Devs'}
-                        </Link>
-                   
 
-                    <Divider sx={{marginTop:'10px', tabSize:''}} />
-                    {/* login and sign up buttons */}
-    
-                        <Button  variant="contained" sx={{margin:'10px', marginTop:'30px',boxSizing:'border-box',background:'black',borderRadius:'10px'}}>Login</Button>
-                        <Button  variant="outlined" sx={{margin:'10px', color:'black',borderRadius:'10px' ,borderColor:'black'}}>SignUP</Button>
-                  
-    </Drawer>
-    <IconButton onClick={()=>setOpen(!open)}>
-       <MenuIcon></MenuIcon>
-    </IconButton>
-</>
-  )
+function Drawercomp(props) {
+  const [open, setOpen] = React.useState(false);
+  const user = props.user;
+  const developers = props.developers || [];
+
+  return (
+    <>
+      <IconButton
+        edge="end"
+        color="black"
+        aria-label="menu"
+        onClick={() => setOpen(!open)}
+        sx={{ display: { xs: 'block', sm: 'block' }, marginLeft: '10px' }}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Drawer
+        anchor='right'
+        open={open}
+        onClose={() => setOpen(false)}
+        sx={{
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: '240px',
+          },
+        }}
+      >
+        <List>
+          <ListItem button component={Link} href="/">
+            <ListItemText primary="Discover" />
+          </ListItem>
+          <ListItem button component={Link} href="/find-hackathon">
+            <ListItemText primary="Find Hackathon" />
+          </ListItem>
+          <ListItem button component={Link} href="/find-devs">
+            <ListItemText primary="Find Devs" />
+          </ListItem>
+          <Divider />
+          {user ? (
+            <>
+              <ListItem button component={Button} onClick={() => {/* Add your logout logic here */}}>
+                <ListItemText primary="Logout" />
+              </ListItem>
+              <ListItem>
+                {developers.length > 0 && (
+                  <List>
+                    {developers.map((developer) => {
+                      if (user.email === developer.email) {
+                        return (
+                          <ListItem key={developer.email}>
+                            <Button>
+                              {developer.name[0].toUpperCase()}
+                            </Button>
+                          </ListItem>
+                        );
+                      }
+                      return null;
+                    })}
+                  </List>
+                )}
+              </ListItem>
+            </>
+          ) : (
+            <>
+              <ListItem button component={Button} href="/login">
+                <ListItemText primary="Login" />
+              </ListItem>
+              <ListItem button component={Button} href="/signup">
+                <ListItemText primary="SignUp" />
+              </ListItem>
+            </>
+          )}
+        </List>
+      </Drawer>
+    </>
+  );
 }
 
-export default Drawercomp
+export default Drawercomp;

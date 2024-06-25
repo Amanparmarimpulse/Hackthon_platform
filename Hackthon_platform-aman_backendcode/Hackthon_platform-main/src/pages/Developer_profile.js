@@ -89,7 +89,7 @@ const DeveloperProfile = () => {
 
     const theme = useTheme();
     const match = useMediaQuery(theme.breakpoints.down('md'));
-
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const selectStyle = {
         backgroundColor: 'white',
         borderRadius: '5px',
@@ -99,10 +99,11 @@ const DeveloperProfile = () => {
         marginTop: '10px',
         fontSize: '16px',
         fontFamily: 'Poppins, sans-serif',
+        fontSize:isSmallScreen?'0.8rem':'1.3rem'
     };
 
     return (
-        <>
+        <Box sx={{overflowX:'hidden'}}>
             <CssBaseline />
             <Navbar />
             <Box sx={{
@@ -134,22 +135,23 @@ const DeveloperProfile = () => {
                     background: 'rgb(71, 101, 216)',
                     height: '100vh',
                     fontFamily: 'poppins',
-                    fontSize: '1.3rem',
+                    fontSize:isSmallScreen?'0.8rem': '1.3rem',
                     width: '100vw',
                     color: 'white',
-                    marginLeft: '10%'
+                    marginLeft:isSmallScreen?'0': '10%',
+                    overflowX:'hidden'
                 }}>
                     <Container sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Typography sx={{ fontWeight: 'bold', fontSize: '2rem', fontFamily: 'poppins', marginBottom: '2%' }}>SignUP</Typography>
+                        <Typography sx={{ fontWeight: 'bold',   fontSize:isSmallScreen?'1rem': '2rem', fontFamily: 'poppins', marginBottom: '2%' }}>SignUP</Typography>
                         <form onSubmit={handleSubmit}>
                             <Container>
                                 <label>Your Name:</label> <br />
                                 <TextField
                                     sx={{
-                                        width: '60%',
+                                        width: isSmallScreen?'100%':'60%',
                                         borderRadius: '7px',
                                         backgroundColor: 'white',
-                                        fontSize: '1.3rem',
+                                        fontSize:isSmallScreen?'0.8rem':'1.3rem'
                                     }}
                                     InputProps={{
                                         style: { height: "50px" },
@@ -157,7 +159,7 @@ const DeveloperProfile = () => {
                                     variant='filled'
                                     size='small'
                                     type='text'
-                                    margin='dense'
+                                    margin={isSmallScreen?'':'dense'}
                                     required
                                     name="name"
                                     value={name}
@@ -167,10 +169,10 @@ const DeveloperProfile = () => {
                                 <label>Where are you based?:</label> <br />
                                 <TextField
                                     sx={{
-                                        width: '60%',
+                                        width: isSmallScreen?'100%':'60%',
                                         borderRadius: '7px',
                                         backgroundColor: 'white',
-                                        fontSize: '1.3rem',
+                                        fontSize:isSmallScreen?'0.8rem':'1.3rem'
                                     }}
                                     InputProps={{
                                         style: { height: "50px" },
@@ -203,10 +205,10 @@ const DeveloperProfile = () => {
                                 <label>Developer Email ID for contact:</label> <br />
                                 <TextField
                                     sx={{
-                                        width: '60%',
+                                        width: isSmallScreen?'100%':'60%',
                                         borderRadius: '7px',
                                         backgroundColor: 'white',
-                                        fontSize: '1.3rem',
+                                        fontSize:isSmallScreen?'0.8rem':'1.3rem'
                                     }}
                                     InputProps={{
                                         style: { height: "50px" },
@@ -224,10 +226,10 @@ const DeveloperProfile = () => {
                                 <label>Password</label> <br />
                                 <TextField
                                     sx={{
-                                        width: '60%',
+                                        width: isSmallScreen?'100%':'60%',
                                         borderRadius: '7px',
                                         backgroundColor: 'white',
-                                        fontSize: '1.3rem',
+                                        fontSize:isSmallScreen?'0.8rem':'1.3rem'
                                     }}
                                     InputProps={{
                                         style: { height: "50px" },
@@ -242,8 +244,8 @@ const DeveloperProfile = () => {
                                     onChange={handleCredentials} />
                             </Container>
                             <Container className="skills-container" >
-                                <Typography variant='h6'>Add Skills</Typography>
-                                <Box sx={{display:'flex',flexDirection:'row',width:'80%' ,marginLeft:'0'}}>
+                                <Typography variant='h6' sx={{fontSize:isSmallScreen?'1rem':'1.3rem'}}>Add Skills</Typography>
+                                <Box sx={{display:'flex',flexDirection:'row',width:isSmallScreen?'100%':'80%' ,marginLeft:'0'}}>
                                     <select value={selectedSkill} onChange={handleSkillsChange} style={selectStyle}>
                                         <option value="">Select Skill</option>
                                         <option value="ai_ml">AI/ML</option>
@@ -254,14 +256,15 @@ const DeveloperProfile = () => {
                                     </select>
                                     <Button type="button" onClick={handleAddSkill} sx={{
                                         backgroundColor: 'white',
-                                        width: '30%',
+                                        width: isSmallScreen?'80%':'30%',
                                         height: '10%',
                                         '&:hover': {
                                             backgroundColor: 'lightgrey'
                                         }, marginLeft: '3%',
-                                        marginTop:'3%'
+                                        marginTop:'3%',
+                                        
                                     }}>
-                                        <Typography sx={{ fontFamily: 'poppins !important' }}>Add Skill</Typography>
+                                        <Typography sx={{ fontFamily: 'poppins !important' ,fontSize:isSmallScreen?'0.8rem':'1.3rem'}}>Add Skill</Typography>
                                     </Button>
                                 </Box>
                                 <Container className="selected-skills">
@@ -278,12 +281,12 @@ const DeveloperProfile = () => {
                                     backgroundColor: 'lightgrey',
                                 },
                             }}>
-                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins !important' }}>Submit</Typography>
+                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins !important' ,  fontSize:isSmallScreen?'0.8rem':'1rem'}}>Submit</Typography>
                             </Button>
                             <Button href="/login" sx={{
                                 marginTop: '6%', marginLeft: '3%', width: '20%', borderRadius: '30px', height: '10%',
                             }}>
-                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins', color:'white', }}>Login</Typography>
+                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'poppins', color:'white',  fontSize:isSmallScreen?'0.8rem':'1rem' }}>Login</Typography>
                             </Button>
                             <br/>
                             {emailError && <Typography sx={{ color: 'red' }}>{emailError}</Typography>}
@@ -292,7 +295,7 @@ const DeveloperProfile = () => {
                     </Container>
                 </Container>
             </Box>
-        </>
+        </Box>
     );
 }
 

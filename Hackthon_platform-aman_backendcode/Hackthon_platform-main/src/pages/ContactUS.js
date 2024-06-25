@@ -1,15 +1,15 @@
 import React, { useRef } from 'react';
 
-import { Container, Typography } from '@mui/material';
+import { Container, Typography ,Box} from '@mui/material';
 import emailjs from '@emailjs/browser';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Navbar from './Components/Navbar';
 import { useLocation } from 'react-router-dom';
-
+import { useMediaQuery, useTheme } from '@mui/material';
 const ContactUS = () => {
   const location = useLocation();
-  console.log(location.state)
-
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const form = useRef();
 
@@ -37,21 +37,21 @@ const ContactUS = () => {
   };
 
   return (
-    <>
+    <Box>
 
       <Navbar/>
       <Container sx={{
-        height: 150, 
-        backgroundColor: 'rgba(23, 44, 87, 1)',
+        height: isSmallScreen?'15vh':'150',
+                backgroundColor: 'rgba(23, 44, 87, 1)',
         marginTop: '5vh',
-        borderRadius: '10px',
+        borderRadius: isSmallScreen?'':'10px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
       }}>
         <Typography sx={{
-          fontSize: '2rem',
-          fontWeight: '2rem',
+          fontSize: isSmallScreen?'1.2rem':'2rem',
+          fontWeight: isSmallScreen?'1.2rem':'2rem',
           color: 'white',
           fontFamily: 'Poppins',
         }}>
@@ -122,12 +122,12 @@ const ContactUS = () => {
             />
           </div>
           <div className="col-md-12 d-flex justify-content-center">
-            <input type="submit" value="Send" className="btn btn-primary" style={{ width: 400, height: 45 }} />
+            <input type="submit" value="Send" className="btn btn-primary" style={{ width: 400, height: 45 , marginBottom:'2vh'}} />
           </div>
         </form>
       </div>
 
-    </>
+    </Box>
   );
 };
 

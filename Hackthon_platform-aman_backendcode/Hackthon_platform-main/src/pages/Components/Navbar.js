@@ -78,7 +78,7 @@ function Navbar() {
 
                     {/* container for text */}
                     {match ? (
-                        <Drawercomp />
+                        <Drawercomp user={user}/>
                     ) : (
                         <>
                             <Container
