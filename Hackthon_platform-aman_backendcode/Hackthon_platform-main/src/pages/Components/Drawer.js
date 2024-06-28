@@ -33,11 +33,11 @@ function Drawercomp(props) {
           <ListItem button component={Link} href="/">
             <ListItemText primary="Discover" />
           </ListItem>
-          <ListItem button component={Link} href="/find-hackathon">
+          <ListItem button component={Link} href="/Hackathon">
             <ListItemText primary="Find Hackathon" />
           </ListItem>
-          <ListItem button component={Link} href="/find-devs">
-            <ListItemText primary="Find Devs" />
+          <ListItem button component={Link} href="/ Teams">
+            <ListItemText primary="Find Devs]" />
           </ListItem>
           <Divider />
           {user ? (
@@ -69,7 +69,7 @@ function Drawercomp(props) {
               <ListItem button component={Button} href="/login">
                 <ListItemText primary="Login" />
               </ListItem>
-              <ListItem button component={Button} href="/signup">
+              <ListItem button component={Button} href="/developer">
                 <ListItemText primary="SignUp" />
               </ListItem>
             </>
