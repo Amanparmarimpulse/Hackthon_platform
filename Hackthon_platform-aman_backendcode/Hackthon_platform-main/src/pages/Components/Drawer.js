@@ -37,7 +37,7 @@ function Drawercomp(props) {
             <ListItemText primary="Find Hackathon" />
           </ListItem>
           <ListItem button component={Link} href="/ Teams">
-            <ListItemText primary="Find Devs]" />
+            <ListItemText primary="Find Devs" />
           </ListItem>
           <Divider />
           {user ? (
