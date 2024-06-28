@@ -63,7 +63,7 @@ const DeveloperProfile = () => {
                 await userCredential.user.reload();
                 if (userCredential.user.emailVerified) {
                     // Send data to your server
-                    await axios.post('https://hackthon-platform-qijy.vercel.app/developer', { name, email, location, gender, bio, skills });
+                    await axios.post('https://hackthon-platform-2.onrender.com/developers', { name, email, location, gender, bio, skills });
                     navigate('/home');
                 } else {
                     setTimeout(checkEmailVerified, 1000); // Check every second
