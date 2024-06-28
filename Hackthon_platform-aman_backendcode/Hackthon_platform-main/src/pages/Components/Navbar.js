@@ -25,7 +25,7 @@ function Navbar() {
 
     // Fetch developer data from MongoDB collection
     const fetchDeveloperData = () => {
-        fetch('https://hackthon-platform-2.onrender.com/developers')
+        fetch('https://hackthon-platform-2.onrender.com/developer')
             .then(response => response.json())
             .then(data => {
                 setDevelopers(data);
