@@ -17,7 +17,7 @@ function Navbar() {
         fetchDeveloperData(); // Fetch developer data on component mount
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
-            console.log(user);
+            // console.log(user);
         });
 
         return () => unsubscribe();
@@ -29,7 +29,7 @@ function Navbar() {
             .then(response => response.json())
             .then(data => {
                 setDevelopers(data);
-                console.log('Data successfully fetched:', data);
+                // console.log('Data successfully fetched:', data);
             })
             .catch(err => console.error('Error fetching data:', err));
     };

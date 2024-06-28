@@ -48,28 +48,34 @@ const Teams = () => {
             <br></br> and Unleash your potential
             
           </Typography>
-          <Button
-  sx={{
-    width: { xs: '8em', sm: '10em' }, // Adjust width for small screens
-    background: 'rgb(191, 210, 208)',
-    color: 'rgba(2, 48, 71, 1)',
-    borderRadius: '25px',
-    padding: '0.5em 1em',
-    marginTop: '1em',
-    marginBottom: '2vh',
-    marginLeft: { xs: '25%', sm: '33%', md: '3em' }, // Adjust margin for small screens
-    fontSize: { xs: '0.8rem', sm: '1rem' }, // Adjust font size for small screens
-    textTransform: 'none',
-    transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-    '&:hover': {
+          <Box sx={{
+  display: 'flex',
+  justifyContent: { xs: 'center', md: 'flex-start' },
+  width: '100%',
+}}>
+  <Button
+    sx={{
+      width: { xs: '8em', sm: '10em' },
       background: 'rgb(191, 210, 208)',
-      transform: 'scale(1.05)',
-    },
-  }}
-  href='/developer'
->
-  Register
-</Button>
+      color: 'rgba(2, 48, 71, 1)',
+      borderRadius: '25px',
+      padding: '0.5em 1em',
+      marginTop: '1em',
+      marginBottom: '2vh',
+      marginLeft: { md: '3em' }, // Only apply left margin on medium screens and up
+      fontSize: { xs: '0.8rem', sm: '1rem' },
+      textTransform: 'none',
+      transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+      '&:hover': {
+        background: 'rgb(191, 210, 208)',
+        transform: 'scale(1.05)',
+      },
+    }}
+    href='/developer'
+  >
+    Register
+  </Button>
+</Box>
 
         </Container>
         <Container

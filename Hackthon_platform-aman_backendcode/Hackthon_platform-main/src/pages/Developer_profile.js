@@ -99,7 +99,7 @@ const DeveloperProfile = () => {
         marginTop: '10px',
         fontSize: '16px',
         fontFamily: 'Poppins, sans-serif',
-        fontSize:isSmallScreen?'0.8rem':'1.3rem'
+        fontSize:isSmallScreen?'0.8rem':'1.1rem'
     };
 
     return (
@@ -135,14 +135,14 @@ const DeveloperProfile = () => {
                     background: 'rgb(71, 101, 216)',
                     height: '100vh',
                     fontFamily: 'poppins',
-                    fontSize:isSmallScreen?'0.8rem': '1.3rem',
+                    fontSize:isSmallScreen?'0.8rem': '1.1rem',
                     width: '100vw',
                     color: 'white',
                     marginLeft:isSmallScreen?'0': '10%',
                     overflowX:'hidden'
                 }}>
                     <Container sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Typography sx={{ fontWeight: 'bold',   fontSize:isSmallScreen?'1rem': '2rem', fontFamily: 'poppins', marginBottom: '2%' }}>SignUP</Typography>
+                        <Typography sx={{ fontWeight: 'bold',   fontSize:isSmallScreen?'1rem': '1.5rem', fontFamily: 'poppins', marginBottom: '2%' }}>SignUP</Typography>
                         <form onSubmit={handleSubmit}>
                             <Container>
                                 <label>Your Name:</label> <br />
@@ -151,10 +151,10 @@ const DeveloperProfile = () => {
                                         width: isSmallScreen?'100%':'60%',
                                         borderRadius: '7px',
                                         backgroundColor: 'white',
-                                        fontSize:isSmallScreen?'0.8rem':'1.3rem'
+                                        fontSize:isSmallScreen?'0.8rem':'1.1rem'
                                     }}
                                     InputProps={{
-                                        style: { height: "50px" },
+                                        style: { height: "40px" },
                                     }}
                                     variant='filled'
                                     size='small'
@@ -208,7 +208,7 @@ const DeveloperProfile = () => {
                                         width: isSmallScreen?'100%':'60%',
                                         borderRadius: '7px',
                                         backgroundColor: 'white',
-                                        fontSize:isSmallScreen?'0.8rem':'1.3rem'
+                                        fontSize:isSmallScreen?'0.8rem':'1.1rem'
                                     }}
                                     InputProps={{
                                         style: { height: "50px" },
@@ -229,7 +229,7 @@ const DeveloperProfile = () => {
                                         width: isSmallScreen?'100%':'60%',
                                         borderRadius: '7px',
                                         backgroundColor: 'white',
-                                        fontSize:isSmallScreen?'0.8rem':'1.3rem'
+                                        fontSize:isSmallScreen?'0.8rem':'1.1rem'
                                     }}
                                     InputProps={{
                                         style: { height: "50px" },
@@ -244,8 +244,8 @@ const DeveloperProfile = () => {
                                     onChange={handleCredentials} />
                             </Container>
                             <Container className="skills-container" >
-                                <Typography variant='h6' sx={{fontSize:isSmallScreen?'1rem':'1.3rem'}}>Add Skills</Typography>
-                                <Box sx={{display:'flex',flexDirection:'row',width:isSmallScreen?'100%':'80%' ,marginLeft:'0'}}>
+                                <Typography variant='h6' sx={{fontSize:isSmallScreen?'1rem':'1.1rem'}}>Add Skills</Typography>
+                                <Box sx={{display:'flex',flexDirection:'row',width:isSmallScreen?'80%':'80%' ,marginLeft:'0'}}>
                                     <select value={selectedSkill} onChange={handleSkillsChange} style={selectStyle}>
                                         <option value="">Select Skill</option>
                                         <option value="ai_ml">AI/ML</option>
@@ -256,15 +256,15 @@ const DeveloperProfile = () => {
                                     </select>
                                     <Button type="button" onClick={handleAddSkill} sx={{
                                         backgroundColor: 'white',
-                                        width: isSmallScreen?'80%':'30%',
+                                        width: isSmallScreen?'100%':'30%',
                                         height: '10%',
                                         '&:hover': {
                                             backgroundColor: 'lightgrey'
                                         }, marginLeft: '3%',
-                                        marginTop:'3%',
+                                        marginTop:isSmallScreen?'10%':'3%',
                                         
                                     }}>
-                                        <Typography sx={{ fontFamily: 'poppins !important' ,fontSize:isSmallScreen?'0.8rem':'1.3rem'}}>Add Skill</Typography>
+                                        <Typography sx={{ fontFamily: 'poppins !important' ,fontSize:isSmallScreen?'0.8rem':'1rem'}}>Add Skill</Typography>
                                     </Button>
                                 </Box>
                                 <Container className="selected-skills">

@@ -142,42 +142,57 @@ const DeveloperProfile = () => {
                 />
                 {passwordError && <Typography color="error" sx={{ fontSize: isSmallScreen ? '0.8rem' : '0.9rem' }}>{passwordError}</Typography>}
               </Container>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <Button type="submit" sx={{
-                  backgroundColor: 'white', 
-                  marginTop: '1rem', 
-                  width: isSmallScreen ? '100%' : '45%', 
-                  borderRadius: '30px', 
-                  '&:hover': {
-                    backgroundColor: 'lightgrey',
-                  },
-                }}>
-                  <Typography sx={{ 
-                    fontWeight: 'bold', 
-                    fontFamily: 'poppins', 
-                    fontSize: isSmallScreen ? '0.8rem' : '0.9rem'
-                  }}>
-                    Submit
-                  </Typography>
-                </Button>
-                <Button href="/developer" sx={{
-                  backgroundColor: 'white', 
-                  marginTop: '1rem', 
-                  width: isSmallScreen ? '100%' : '45%', 
-                  borderRadius: '30px', 
-                  '&:hover': {
-                    backgroundColor: 'lightgrey',
-                  },
-                }}>
-                  <Typography sx={{ 
-                    fontWeight: 'bold', 
-                    fontFamily: 'poppins', 
-                    fontSize: isSmallScreen ? '0.8rem' : '0.9rem'
-                  }}>
-                    Signup
-                  </Typography>
-                </Button>
-              </Box>
+              <Box sx={{ 
+  display: 'flex', 
+  flexDirection: { xs: 'column', sm: 'row' },
+  justifyContent: { xs: 'center', sm: 'center '},
+  alignItems: 'center',
+  width: '100%',
+  mt: 2,
+  gap:'10%'
+}}>
+  <Button 
+    type="submit" 
+    sx={{
+      backgroundColor: 'white',
+      width: { xs: '100%', sm: '48%' },
+      maxWidth: '300px',
+      mb: { xs: 2, sm: 0 },
+      borderRadius: '30px',
+      '&:hover': {
+        backgroundColor: 'lightgrey',
+      },
+    }}
+  >
+    <Typography sx={{
+      fontWeight: 'bold',
+      fontFamily: 'poppins',
+      fontSize: { xs: '0.8rem', sm: '0.9rem' }
+    }}>
+      Submit
+    </Typography>
+  </Button>
+  <Button 
+    href="/developer" 
+    sx={{
+      backgroundColor: 'white',
+      width: { xs: '100%', sm: '48%' },
+      maxWidth: '300px',
+      borderRadius: '30px',
+      '&:hover': {
+        backgroundColor: 'lightgrey',
+      },
+    }}
+  >
+    <Typography sx={{
+      fontWeight: 'bold',
+      fontFamily: 'poppins',
+      fontSize: { xs: '0.8rem', sm: '0.9rem' }
+    }}>
+      Signup
+    </Typography>
+  </Button>
+</Box>
               <Container sx={{ display: 'flex', marginTop: '1rem', justifyContent: 'center' }}>
                 <Typography 
                   onClick={handlePasswordReset} 
