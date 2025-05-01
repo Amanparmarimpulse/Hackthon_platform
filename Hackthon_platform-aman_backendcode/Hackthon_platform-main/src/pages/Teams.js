@@ -116,7 +116,7 @@ const Teams = () => {
       </Box>
 
       <Container sx={{ padding: '2rem', borderRadius: '10px',backgroundColor:'rgb(191, 210, 208)' }}>
-        <ProfileCards size={6} count={5} />
+        <ProfileCards size={6} count={10} />
       </Container>
 
       
